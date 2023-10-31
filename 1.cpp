@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>  // Добавлен заголовок для std::istringstream
+#include <sstream>  
 #include <string>
 
 const int maxVertices = 1000;
