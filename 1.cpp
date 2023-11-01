@@ -77,18 +77,24 @@ int main() {
 
         }
         else if (prefix == "f" && faceCount < maxFaces) {
-            Face& face = faces[faceCount];
-            for (int i = 0; i < 4; i++) {
-                lineStream >> face.vertexIndices[i] >> face.textureIndices[i] >> face.normalIndices[i] >> face.faceIndices[i];
-            }
+    Face& face = faces[faceCount];
+    for (int i = 0; i < 4; i++) {
+        lineStream >> face.vertexIndices[i] >> face.textureIndices[i] >> face.normalIndices[i] >> face.faceIndices[i];
+    }
 
-            faceCount++;
-        }
+    faceCount++;
+
+    std::cout << "f ";
+    for (int i = 0; i < 4; i++) {
+        int vertexIndex = face.vertexIndices[i] - 1;  // Subtract 1 because OBJ indices start from 1
+        std::cout << "x=" << vertices[vertexIndex].x << " y=" << vertices[vertexIndex].y << " z=" << vertices[vertexIndex].z << " ";
+    }
+    std::cout << "\n";
+}
+
         if(prefix == "v") std::cout << prefix << " " << vertices[vertexCount - 1].x << " " << vertices[vertexCount - 1].y << " " << vertices[vertexCount - 1].z <<  "\n";
         else if(prefix == "vt") std::cout << prefix << " " << texCoords[texCoordCount - 1].u << " " << texCoords[texCoordCount - 1].v << "\n";
-        else if(prefix == "vn") std::cout << prefix << " " << normals[normalCount - 1].nx << " " << tnormals[normalCount - 1].ny << normals[normalCount - 1].nz << "\n";
-        else if(prefix == "f") std::cout << prefix << " " << face.vertexIndices[i]  << " " << face.textureIndices[i]  << normals[normalCount - 1].nz;face.normalIndices[i] <<  face.faceIndices[i]; << "\n";
-
+        else if(prefix == "vn") std::cout << prefix << " " << normals[normalCount - 1].nx << " " << normals[normalCount - 1].ny << normals[normalCount - 1].nz << "\n";
     }
 
     return 0;
